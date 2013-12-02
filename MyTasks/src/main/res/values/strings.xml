@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Manage My Tasks</string>
+    <string name="app_name">My Tasks</string>
     <string name="done">Done</string>
     <string name="add_task">Add New Task</string>
     <string name="new_task_name">please enter task name</string>

@@ -25,7 +25,7 @@ public class TaskListActivity extends Activity {
        TaskListModel taskListModel = TaskListModel.getInstance(this);
 
         ListView taskList = (ListView) findViewById(R.id.task_details_view);
-        taskAdapter = new TaskListAdapter(this);
+        taskAdapter = new TaskListAdapter(this, taskListModel);
         taskList.setAdapter(taskAdapter);
 
         Button addNewTaskButton = (Button) findViewById(R.id.new_task_button);

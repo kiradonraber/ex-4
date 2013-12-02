@@ -19,10 +19,12 @@ public class TaskListAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater l_Inflater;
     private TaskListModel taskList;
+    private static ArrayList<TaskDetails> taskDetailsArrayList;
 
-    public TaskListAdapter(android.content.Context context) {
+    public TaskListAdapter(android.content.Context context, TaskListModel tasks) {
         this.context = context;
-        this.taskList = TaskListModel.getInstance(context);
+        taskList=tasks;
+        taskDetailsArrayList = tasks.getAllTasks();
         this.l_Inflater = LayoutInflater.from(context);
     }
 
@@ -45,7 +47,7 @@ public class TaskListAdapter extends BaseAdapter {
         @Override
         public void onClick(View view) {
             int position = (Integer) view.getTag();
-            Log.d(TAG, "Removing task : " + getItem(position).getDescription());
+            Log.d(TAG, getItem(position).getName()  + " HAS BEEN REMOVED ");
             taskList.deleteTask(getItem(position));
             notifyDataSetChanged();
         }
@@ -59,6 +61,7 @@ public class TaskListAdapter extends BaseAdapter {
             holder = new TaskHolder();
             holder.taskName = (TextView) convertView.findViewById(R.id.task_name);
             holder.taskDescription = (TextView) convertView.findViewById(R.id.task_description);
+            holder.taskDateAndTime = (TextView) convertView.findViewById(R.id.task_date_time);
             holder.doneButton = (Button) convertView.findViewById(R.id.done_button);
             holder.doneButton.setOnClickListener(doneButtonOnClickListener);
             convertView.setTag(holder);
@@ -68,6 +71,7 @@ public class TaskListAdapter extends BaseAdapter {
 
         holder.taskName.setText(getItem(position).getName());
         holder.taskDescription.setText(getItem(position).getDescription());
+        holder.taskDateAndTime.setText(getItem(position).getDate());
         holder.doneButton.setTag(position);
 
         return convertView;
@@ -76,6 +80,7 @@ public class TaskListAdapter extends BaseAdapter {
     static class TaskHolder {
         TextView taskName;
         TextView taskDescription;
+        TextView taskDateAndTime;
         Button doneButton;
     }
 }

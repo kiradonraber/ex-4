@@ -7,12 +7,15 @@ public class TaskDetails {
     private long id;
     private String name;
     private String description;
+    private String dateTime;
 
     public TaskDetails(){}
 
-    public TaskDetails(String name, String description){
+    public TaskDetails(String name, String description //String dateAndTime
+     ){
         this.name = name;
         this.description = description;
+        //this.dateTime = dateAndTime;
     }
 
     public String getName() {
@@ -37,5 +40,13 @@ public class TaskDetails {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getDate() {
+        return dateTime;
+    }
+
+    public void setDate(String dateAndTime) {
+        this.dateTime = dateAndTime;
     }
 }

@@ -6,12 +6,24 @@
 
     <TextView android:id="@+id/task_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#3399FF"/>
 
     <TextView android:id="@+id/task_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/task_name"/>
+        android:layout_below="@id/task_name"
+        android:textSize="14sp"
+        android:textColor="#989898"/>
+
+    <TextView android:id="@+id/task_date_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/task_description"
+        android:textSize="12sp"
+        android:textColor="#989898"/>
 
     <Button
         android:id="@+id/done_button"
