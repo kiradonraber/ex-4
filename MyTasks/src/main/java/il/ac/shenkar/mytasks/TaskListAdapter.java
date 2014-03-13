@@ -1,14 +1,12 @@
 package il.ac.shenkar.mytasks;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
-import java.util.ArrayList;
+
 
 /**
  * Created by raberkira on 11/29/13.
@@ -19,12 +17,10 @@ public class TaskListAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater l_Inflater;
     private TaskListModel taskList;
-    private static ArrayList<TaskDetails> taskDetailsArrayList;
 
-    public TaskListAdapter(android.content.Context context, TaskListModel tasks) {
+    public TaskListAdapter(android.content.Context context) {
         this.context = context;
-        taskList=tasks;
-        taskDetailsArrayList = tasks.getAllTasks();
+        this.taskList = TaskListModel.getInstance(context);
         this.l_Inflater = LayoutInflater.from(context);
     }
 
@@ -43,16 +39,6 @@ public class TaskListAdapter extends BaseAdapter {
        return getItem(position).getId();
     }
 
-    private final View.OnClickListener doneButtonOnClickListener = new View.OnClickListener(){
-        @Override
-        public void onClick(View view) {
-            int position = (Integer) view.getTag();
-            Log.d(TAG, getItem(position).getName()  + " HAS BEEN REMOVED ");
-            taskList.deleteTask(getItem(position));
-            notifyDataSetChanged();
-        }
-    };
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         TaskHolder holder;
@@ -62,8 +48,9 @@ public class TaskListAdapter extends BaseAdapter {
             holder.taskName = (TextView) convertView.findViewById(R.id.task_name);
             holder.taskDescription = (TextView) convertView.findViewById(R.id.task_description);
             holder.taskDateAndTime = (TextView) convertView.findViewById(R.id.task_date_time);
-            holder.doneButton = (Button) convertView.findViewById(R.id.done_button);
-            holder.doneButton.setOnClickListener(doneButtonOnClickListener);
+            holder.taskRegularNotification = (TextView) convertView.findViewById(R.id.time_date_notification);
+            holder.taskLocalNotification = (TextView) convertView.findViewById(R.id.local_notification);
+            holder.divider = (TextView) convertView.findViewById(R.id.divider);
             convertView.setTag(holder);
         } else {
             holder = (TaskHolder) convertView.getTag();
@@ -72,7 +59,17 @@ public class TaskListAdapter extends BaseAdapter {
         holder.taskName.setText(getItem(position).getName());
         holder.taskDescription.setText(getItem(position).getDescription());
         holder.taskDateAndTime.setText(getItem(position).getDate());
-        holder.doneButton.setTag(position);
+        if (getItem(position).getRegularNotification()!=null){
+            holder.divider.setVisibility(View.VISIBLE);
+            holder.taskRegularNotification.setVisibility(View.VISIBLE);
+            holder.taskRegularNotification.setText("Time reminder set to: "+getItem(position).getRegularNotification());
+        }
+        String tempLocation = getItem(position).getLocation();
+        if (tempLocation != null && tempLocation != "" && tempLocation!=" "){
+                holder.taskLocalNotification.setVisibility(View.VISIBLE);
+                holder.taskLocalNotification.setText("Location set to: "+ getItem(position).getLocation());
+                holder.divider.setVisibility(View.VISIBLE);
+        }
 
         return convertView;
     }
@@ -81,6 +78,10 @@ public class TaskListAdapter extends BaseAdapter {
         TextView taskName;
         TextView taskDescription;
         TextView taskDateAndTime;
-        Button doneButton;
+        TextView taskRegularNotification;
+        TextView taskLocalNotification;
+        TextView divider;
+
     }
+
 }

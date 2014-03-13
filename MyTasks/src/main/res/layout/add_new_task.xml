@@ -7,22 +7,54 @@
     android:layout_height="match_parent">
 
     <EditText android:id="@+id/new_task_name"
+        android:padding="10sp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textColor="#989898"
         android:hint="@string/new_task_name" />
 
     <EditText android:id="@+id/new_task_description"
+        android:padding="10sp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textColor="#989898"
         android:layout_below="@id/new_task_name"
         android:hint="@string/new_task_description" />
 
-    <Button
-        android:id="@+id/create_new_task_button"
+    <Button  android:id="@+id/add_time_notification"
+        android:padding="10sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/create_new_task_button" />
+        android:fontFamily="sans-serif"
+        android:textColor="#989898"
+        style="?android:attr/borderlessButtonStyle"
+        android:text="@string/add_time_notification_button"
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/ic_action_device_access_alarms" />
 
+    <Button  android:id="@+id/add_date_notification"
+        android:layout_width="wrap_content"
+        android:padding="10sp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textColor="#989898"
+        style="?android:attr/borderlessButtonStyle"
+        android:text="@string/add_date_notification_button"
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/ic_action_collections_go_to_today" />
+
+    <Button  android:id="@+id/add_location"
+        android:padding="10sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textColor="#989898"
+        style="?android:attr/borderlessButtonStyle"
+        android:text="@string/add_location_button"
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/ic_action_location_place" />
 </LinearLayout>
 
 

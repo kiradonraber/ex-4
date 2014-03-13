@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 31;
 
     // Database Name
     private static final String DATABASE_NAME = "TasksDB";
@@ -22,7 +22,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String KEY_ID = "id";
     public static final String KEY_NAME = "name";
     public static final String KEY_DESCRIPTION = "description";
-   // public static final String KEY_DATEANDTIME = "dateAndTime";
+    public static final String KEY_DATEANDTIME = "dateAndTime";
+    public static final String KEY_REGULARNOTIFICATION = "regularNotification";
+    public static final String KEY_LOCATION = "location";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,9 +33,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_TASKS + "("
+        String CREATE_CONTACTS_TABLE = " CREATE TABLE " + TABLE_TASKS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_DESCRIPTION + " TEXT" // + KEY_DATEANDTIME + "TEXT"
+                + KEY_DESCRIPTION + " TEXT,"  + KEY_DATEANDTIME + " TEXT,"
+                + KEY_REGULARNOTIFICATION + " TEXT," + KEY_LOCATION + " TEXT"
                  + ")";
         db.execSQL(CREATE_CONTACTS_TABLE);
     }

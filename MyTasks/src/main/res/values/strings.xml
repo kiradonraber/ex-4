@@ -1,8 +1,22 @@
 <resources>
-    <string name="app_name">My Tasks</string>
+    <string name="app_name">Sticky</string>
     <string name="done">Done</string>
     <string name="add_task">Add New Task</string>
-    <string name="new_task_name">please enter task name</string>
-    <string name="new_task_description">please enter task description</string>
+    <string name="new_task_name">Please enter Sticky title</string>
+    <string name="new_task_description">Please enter Sticky description</string>
     <string name="create_new_task_button">Create New Task</string>
+    <string name="action_new">Add New Sticky note</string>
+    <string name="action_save">Save</string>
+    <string name="action_share">Share</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_help">Help</string>
+    <string name="action_search">Search</string>
+    <string name="add_time_notification_button">Set time reminder</string>
+    <string name="add_location_button">Set location</string>
+    <string name="add_date_notification_button">Set date reminder</string>
+    <string name="select">Select</string>
+    <string name="Cancel">Cancel</string>
+    <string name="enter_location">Please enter location</string>
+    <String name="waiting">Waiting for location...</String>
 </resources>

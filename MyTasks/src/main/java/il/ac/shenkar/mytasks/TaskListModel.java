@@ -24,8 +24,9 @@ public class TaskListModel {
     //private creator
     private TaskListModel(Context context){
         this.context = context;
-        taskList = new ArrayList<TaskDetails>();
         dbHandler = new DatabaseHandler(context);
+        taskList = new ArrayList<TaskDetails>();
+        taskList = getAllTasks();
     }
 
     //public access
@@ -45,7 +46,9 @@ public class TaskListModel {
         ContentValues values = new ContentValues();
         values.put(dbHandler.KEY_NAME, newTask.getName());
         values.put(dbHandler.KEY_DESCRIPTION, newTask.getDescription());
-       // values.put(dbHandler.KEY_DATEANDTIME, newTask.getDate());
+        values.put(dbHandler.KEY_DATEANDTIME, newTask.getDate());
+        values.put (dbHandler.KEY_REGULARNOTIFICATION, newTask.getRegularNotification());
+        values.put (dbHandler.KEY_LOCATION, newTask.getLocation());
         db.insert(dbHandler.TABLE_TASKS, null, values);
         db.close();
     }
@@ -56,6 +59,27 @@ public class TaskListModel {
 
         db = dbHandler.getWritableDatabase();
         db.delete(dbHandler.TABLE_TASKS, dbHandler.KEY_ID + " = ?", new String[] { String.valueOf(taskToRemove.getId()) });
+        db.close();
+    }
+
+    //delete task at specific position
+    public void deleteTask(int position){
+        TaskDetails taskToRemove = taskList.get(position);
+        deleteTask(taskToRemove);
+    }
+
+    // update specific task
+    public void updateTask(TaskDetails updatedTask, int position){
+        taskList.set (position, updatedTask);
+
+        db = dbHandler.getWritableDatabase();
+        ContentValues data = new ContentValues();
+        data.put(dbHandler.KEY_NAME, updatedTask.getName());
+        data.put(dbHandler.KEY_DESCRIPTION, updatedTask.getDescription());
+        data.put(dbHandler.KEY_DATEANDTIME, updatedTask.getDate());
+        data.put(dbHandler.KEY_REGULARNOTIFICATION, updatedTask.getRegularNotification());
+        data.put(dbHandler.KEY_LOCATION, updatedTask.getLocation());
+        db.update(dbHandler.TABLE_TASKS, data, dbHandler.KEY_ID + "=" + updatedTask.getId(), null);
         db.close();
     }
 
@@ -72,7 +96,9 @@ public class TaskListModel {
                 Task.setId(Integer.parseInt(cursor.getString(0)));
                 Task.setName(cursor.getString(1));
                 Task.setDescription(cursor.getString(2));
-                //Task.setDate(cursor.getString(3));
+                Task.setDate(cursor.getString(3));
+                Task.setRegularNotification(cursor.getString(4));
+                Task.setLocation(cursor.getString(5));
                 taskList.add(Task);
                 } while (cursor.moveToNext());
         }
@@ -82,11 +108,6 @@ public class TaskListModel {
 
     //get list size
     public int getListSize(){
-        //String countQuery = "SELECT  * FROM " + dbHandler.TABLE_TASKS;
-        //db = dbHandler.getReadableDatabase();
-        //Cursor cursor = db.rawQuery(countQuery, null);
-
-        //return cursor.getCount();
         return taskList.size();
     }
 

@@ -17,11 +17,14 @@ android {
     buildToolsVersion "17.0.0"
 
     defaultConfig {
-        minSdkVersion 7
-        targetSdkVersion 18
+        minSdkVersion 14
+        targetSdkVersion 19
     }
 }
 
 dependencies {
 	compile 'com.android.support:appcompat-v7:+'
+    compile 'com.google.android.gms:play-services:4.0.30'
+    compile files('libs/libGoogleAnalyticsServices.jar')
+    compile files('libs/Parse-1.4.1.jar')
 }

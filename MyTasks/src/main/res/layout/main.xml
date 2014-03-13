@@ -4,19 +4,56 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <Button
-        android:id="@+id/new_task_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_task" />
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"/>
-    <ListView
-        android:id="@+id/task_details_view"
+
+    <ListView android:id="@android:id/list"
         android:layout_weight="1"
+        android:clickable="true"
         android:layout_width="fill_parent"
         android:layout_height="0dp" />
 
+    <LinearLayout
+        android:id="@+id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <TextView android:id="@+id/oops"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="OOPS!"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="22dp"
+            android:textColor="#989898"/>
+
+        <TextView  android:id="@+id/sticky_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="your Sticky list is empty"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="#989898"
+            android:layout_below="@id/oops"/>
+
+        <TextView android:id="@+id/click_here"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="click here to add new Sticky"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="14dp"
+            android:textColor="#989898"
+            android:layout_below="@id/sticky_empty"/>
+    </LinearLayout>
 </LinearLayout>
